@@ -17,6 +17,13 @@ const nextConfig = {
   },
   trailingSlash: true,
   assetPrefix: process.env.NODE_ENV === 'production' ? '/website/' : '',
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(png|jpg|gif|svg|webp)$/i,
+      type: 'asset/resource',
+    });
+    return config;
+  },
 }
 
 module.exports = nextConfig 

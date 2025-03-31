@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 5, 10, 18;
+  --background-end-rgb: 10, 15, 28;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-altanon-primary text-altanon-dark font-semibold rounded-lg 
+    hover:bg-opacity-90 transition-all duration-300 shadow-lg shadow-altanon-primary/20;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-altanon-secondary text-white font-semibold rounded-lg 
+    hover:bg-opacity-90 transition-all duration-300 shadow-lg shadow-altanon-secondary/20;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r 
+    from-altanon-primary to-altanon-secondary bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply bg-altanon-gray-800 p-6 rounded-xl border border-altanon-gray-700 
+    hover:border-altanon-primary/50 transition-all duration-300;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background-start-rgb));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--background-end-rgb));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--background-end-rgb));
+  opacity: 0.8;
+}

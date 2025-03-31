@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  basePath: process.env.NODE_ENV === 'production' ? '/website' : '',
   images: {
     remotePatterns: [
       {
@@ -8,6 +10,7 @@ const nextConfig = {
       },
     ],
     formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
   experimental: {
     optimizeCss: true,

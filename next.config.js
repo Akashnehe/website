@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/website' : '',
+  basePath: '/website',
   images: {
     unoptimized: true,
   },
@@ -9,7 +9,7 @@ const nextConfig = {
     optimizeCss: true,
   },
   trailingSlash: true,
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/website/' : '',
+  assetPrefix: '/website/',
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|webp)$/i,

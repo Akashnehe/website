@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -9,7 +10,7 @@ const Hero = () => {
 
   // Parallax effect for background
   const backgroundY = useTransform(scrollY, [0, 1000], [0, 300]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const opacityValue = useTransform(scrollY, [0, 400], [1, 0]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -64,14 +65,20 @@ const Hero = () => {
       {/* Dynamic Background */}
       <motion.div 
         className="absolute inset-0 z-0"
-        style={{ 
-          backgroundImage: 'url("/images/new-back.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          y: backgroundY,
-          opacity
-        }}
-      />
+        style={{ y: backgroundY }}
+      >
+        <Image
+          src="/images/new-back.jpg"
+          alt="Background"
+          fill
+          priority
+          quality={100}
+          className="object-cover"
+          style={{
+            opacity: opacityValue.get()
+          }}
+        />
+      </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-altanon-darker via-altanon-darker/50 to-altanon-darker z-[1]" />
 
       {/* Interactive Particles */}

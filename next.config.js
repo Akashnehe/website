@@ -24,6 +24,10 @@ const nextConfig = {
     });
     return config;
   },
+  distDir: 'out',
+  generateBuildId: async () => {
+    return 'build-' + Date.now();
+  },
 }
 
 module.exports = nextConfig 

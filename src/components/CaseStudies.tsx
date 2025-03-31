@@ -3,39 +3,28 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 const caseStudies = [
   {
-    title: 'Global E-commerce Platform',
-    description:
-      'Implemented AI-powered chatbots and voice automation, resulting in a 60% reduction in response time and 40% increase in customer satisfaction.',
-    metrics: [
-      { label: 'Response Time', value: '-60%' },
-      { label: 'Customer Satisfaction', value: '+40%' },
-      { label: 'Cost Reduction', value: '-45%' },
-    ],
+    title: 'FlowNodes Integration',
+    description: 'Successfully integrated FlowNodes into our AI contact center solution, resulting in a 40% improvement in customer satisfaction.',
+    image: '/images/flownodes.jpg',
+    metrics: ['40%', '60%', '24/7']
   },
   {
-    title: 'Financial Services Provider',
-    description:
-      'Deployed sentiment analysis and real-time analytics to proactively address customer concerns, leading to a 35% decrease in customer complaints.',
-    metrics: [
-      { label: 'Customer Complaints', value: '-35%' },
-      { label: 'Resolution Time', value: '-50%' },
-      { label: 'Customer Retention', value: '+25%' },
-    ],
+    title: 'Enterprise Transformation',
+    description: 'Transformed a Fortune 500 company\'s contact center operations with our AI solutions, reducing response times by 60%.',
+    image: '/images/dashboard.jpg',
+    metrics: ['60%', '85%', '100%']
   },
   {
-    title: 'Healthcare Provider',
-    description:
-      'Integrated omni-channel support and AI chatbots to streamline patient inquiries, achieving a 70% reduction in wait times and improved patient satisfaction.',
-    metrics: [
-      { label: 'Wait Times', value: '-70%' },
-      { label: 'Patient Satisfaction', value: '+55%' },
-      { label: 'Staff Efficiency', value: '+40%' },
-    ],
-  },
+    title: 'Global Expansion',
+    description: 'Enabled seamless multilingual support across 12 countries, handling customer queries in multiple languages.',
+    image: '/images/NLP.jpg',
+    metrics: ['12', '95%', '24/7']
+  }
 ];
 
 const CaseStudies = () => {
@@ -57,6 +46,7 @@ const CaseStudies = () => {
     <section id="case-studies" className="py-20 bg-altanon-darker relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
@@ -69,36 +59,31 @@ const CaseStudies = () => {
         </motion.div>
 
         <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
-              className="card p-8"
-            >
-              <h3 className="text-2xl font-semibold text-white mb-4">
-                {caseStudies[currentIndex].title}
-              </h3>
-              <p className="text-gray-400 mb-8">
-                {caseStudies[currentIndex].description}
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {caseStudies[currentIndex].metrics.map((metric) => (
-                  <div
-                    key={metric.label}
-                    className="bg-altanon-gray-800 p-4 rounded-lg text-center"
-                  >
-                    <div className="text-2xl font-bold text-altanon-primary mb-2">
-                      {metric.value}
-                    </div>
-                    <div className="text-gray-400">{metric.label}</div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="relative h-[400px] rounded-xl overflow-hidden">
+              <Image
+                src={caseStudies[currentIndex].image}
+                alt={caseStudies[currentIndex].title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                priority
+                quality={100}
+              />
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold mb-4">{caseStudies[currentIndex].title}</h3>
+              <p className="text-gray-300 mb-8">{caseStudies[currentIndex].description}</p>
+              <div className="grid grid-cols-3 gap-4">
+                {caseStudies[currentIndex].metrics.map((metric, i) => (
+                  <div key={i} className="text-center">
+                    <div className="text-2xl font-bold text-altanon-primary">{metric}</div>
+                    <div className="text-sm text-gray-400">Metric {i + 1}</div>
                   </div>
                 ))}
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </div>
 
           {/* Navigation Buttons */}
           <div className="flex justify-center mt-8 space-x-4">

@@ -4,57 +4,154 @@
 
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 5, 10, 18;
-  --background-end-rgb: 10, 15, 28;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
+  background: rgb(var(--background-start-rgb));
   min-height: 100vh;
 }
 
-@layer components {
-  .btn-primary {
-    @apply px-6 py-3 bg-altanon-primary text-altanon-dark font-semibold rounded-lg 
-    hover:bg-opacity-90 transition-all duration-300 shadow-lg shadow-altanon-primary/20;
-  }
-
-  .btn-secondary {
-    @apply px-6 py-3 bg-altanon-secondary text-white font-semibold rounded-lg 
-    hover:bg-opacity-90 transition-all duration-300 shadow-lg shadow-altanon-secondary/20;
-  }
-
-  .section-title {
-    @apply text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r 
-    from-altanon-primary to-altanon-secondary bg-clip-text text-transparent;
-  }
-
-  .card {
-    @apply bg-altanon-gray-800 p-6 rounded-xl border border-altanon-gray-700 
-    hover:border-altanon-primary/50 transition-all duration-300;
-  }
+.animation-delay-2000 {
+  animation-delay: 2s;
 }
 
-/* Custom scrollbar */
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Remove cursor animation if it exists */
+.cursor-dot,
+.cursor-outline,
+.cursor-effect,
+.cursor-animation,
+.cursor-glow,
+.cursor-trail {
+  display: none !important;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply px-8 py-4 bg-gradient-to-r from-altanon-primary to-altanon-secondary text-black font-semibold rounded-lg 
+  transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-altanon-primary/20;
+}
+
+.btn-secondary {
+  @apply px-8 py-4 border-2 border-altanon-primary/50 text-altanon-primary font-semibold rounded-lg 
+  transition-all duration-300 hover:bg-altanon-primary/10 hover:border-altanon-primary hover:text-white 
+  hover:shadow-lg hover:shadow-altanon-primary/20;
+}
+
+/* Section Title */
+.section-title {
+  @apply text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-altanon-primary to-altanon-secondary bg-clip-text text-transparent;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-altanon-gray-800 p-6 rounded-xl border border-altanon-gray-700 
+  hover:border-altanon-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-altanon-primary/10;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(var(--background-start-rgb));
+  background: #0A0F1C;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--background-end-rgb));
+  background: #1A1F2C;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--background-end-rgb));
-  opacity: 0.8;
+  background: #2A2F3C;
+}
+
+/* Background image handling */
+.hero-background {
+  background-image: url('/images/back.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hero-background:hover {
+  opacity: 1;
+}
+
+/* Gradient Text Animation */
+.animate-gradient-x {
+  animation: gradient-x 15s linear infinite;
+}
+
+.bg-300\% {
+  background-size: 300% 100%;
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Floating Animation */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Glow Effect */
+.glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(0, 255, 178, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(0, 255, 178, 0.8);
+  }
+}
+
+/* Blur Gradient */
+.blur-gradient {
+  position: absolute;
+  filter: blur(100px);
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Grid Pattern */
+.grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
 }

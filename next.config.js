@@ -15,6 +15,8 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  trailingSlash: true,
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/website/' : '',
 }
 
 module.exports = nextConfig 

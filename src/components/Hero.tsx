@@ -64,21 +64,13 @@ const Hero = () => {
     >
       {/* Dynamic Background */}
       <motion.div 
-        className="absolute inset-0 z-0"
-        style={{ y: backgroundY }}
-      >
-        <Image
-          src="/images/new-back.jpg"
-          alt="Background"
-          fill
-          priority
-          quality={100}
-          className="object-cover"
-          style={{
-            opacity: opacityValue.get()
-          }}
-        />
-      </motion.div>
+        className="absolute inset-0 z-0 bg-cover bg-center"
+        style={{ 
+          backgroundImage: 'url("/images/new-back.jpg")',
+          y: backgroundY,
+          opacity: opacityValue
+        }}
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-altanon-darker via-altanon-darker/50 to-altanon-darker z-[1]" />
 
       {/* Interactive Particles */}
